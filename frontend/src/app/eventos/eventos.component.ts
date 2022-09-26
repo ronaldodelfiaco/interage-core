@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../login/auth.service';
 
 @Component({
   selector: 'app-eventos',
