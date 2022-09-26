@@ -8,14 +8,9 @@ import { AuthService } from '../login/auth.service';
 })
 export class EventosComponent implements OnInit {
 
-  constructor(private auth: AuthService,) { }
-
-  response = this.auth._getTokenLogadoLocalStorage();
+  constructor() { }
 
   ngOnInit(): void {
-    console.log(this.response);
   }
-
-
 
 }
