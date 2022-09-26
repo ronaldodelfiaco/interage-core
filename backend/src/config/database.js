@@ -7,10 +7,10 @@ dotenv.config();
 // ==> Conexão com a Base de Dados:
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false,
-    ca: "-----BEGIN CERTIFICATE-----\nRCI SISTEMAS 253698752456*58/1234567\n-----END CERTIFICATE-----"
-  }
+  // ssl: {
+  //   rejectUnauthorized: false,
+  //   ca: "-----BEGIN CERTIFICATE-----\nRCI SISTEMAS 253698752456*58/1234567\n-----END CERTIFICATE-----"
+  // }
 
 });
 
@@ -19,8 +19,8 @@ pool.on('connect', () => {
 });
 
 module.exports = {
-  
-  query: (text, params) => pool.query(text, params), 
 
-   
+  query: (text, params) => pool.query(text, params),
+
+
 };
