@@ -2,17 +2,14 @@
 
 html,
 body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100%;
 }
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
-login-app {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .form-field {
