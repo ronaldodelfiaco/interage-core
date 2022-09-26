@@ -1,5 +1,5 @@
 <mat-card class="container">
-  <form [formGroup]="usuario" (ngSubmit)="onSubmit()">
+  <form [formGroup]="usuarioTO" (ngSubmit)="onSubmit()">
     <mat-card-title>Login</mat-card-title>
     <mat-form-field class="form-field" appearance="fill">
       <mat-label>Usuario</mat-label>
@@ -7,10 +7,10 @@
     </mat-form-field>
     <mat-form-field class="form-field" appearance="fill">
       <mat-label>Senha</mat-label>
-      <input matInput type="password" formControlName="password">
+      <input matInput type="password" formControlName="password" >
     </mat-form-field>
     <mat-card-actions>
-      <button mat-raised-button color="primary">Logar</button>
+      <button mat-raised-button color="primary" [disabled]="!usuarioTO.valid">Logar</button>
       <button mat-raised-button color="primary">Esqueci a Senha</button>
     </mat-card-actions>
   </form>
