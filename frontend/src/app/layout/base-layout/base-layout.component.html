@@ -1,0 +1,36 @@
+<mat-sidenav-container class="example-container">
+  <!-- Conteudo do sedenav -->
+  <mat-sidenav #sidenav mode="push" [(opened)]="opened" (opened)="events.push('open!')"
+    (closed)="events.push('close!')">
+    <button mat-button color="secondary" class="width-full">Placeholder</button>
+  </mat-sidenav>
+  <mat-sidenav-content>
+
+    <!-- Toolbar do topo -->
+    <mat-toolbar color="primary" class="toolbar">
+      <!-- Botão de ativar/desativar sidenav -->
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
+        (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Interage Core</span>
+      <!-- Botão de ativar/desativar menu do canto superior direito -->
+      <span class="example-spacer"></span>
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <!-- Menu do canto superior direito -->
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+
+    <!-- Router, pega o filho -->
+    <router-outlet #o="outlet"></router-outlet>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
