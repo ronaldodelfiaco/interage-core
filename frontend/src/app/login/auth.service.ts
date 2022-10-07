@@ -84,7 +84,7 @@ export class AuthService {
 
   async autenticacao(usuario: Usuario) {
     try {
-      const usuarioLogado = await this.connectHTTP.callService({
+      const usuarioLogado = await this.connectHTTP.getUser({
         service: 'login',
         naoExigeToken: true,
         paramsService: {
@@ -92,6 +92,8 @@ export class AuthService {
           senha: usuario.password,
         }
       })
+      console.log(usuarioLogado.resposta);
+
 
       this.usuarioLogadoObject = usuarioLogado.resposta;
       console.log(this.usuarioLogadoObject);
