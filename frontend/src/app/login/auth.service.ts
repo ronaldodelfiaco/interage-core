@@ -107,12 +107,12 @@ export class AuthService {
   }
 
   checkAutenticacao() {
-    return this._getDataExpiracao() && this._getDataExpiracao().getTime() > new Date().getTime();
+    return this._getDataExpiracao() && this._getDataExpiracao()!.getTime() > new Date().getTime();
   }
 
   validaAutenticacao() {
     if (this.getUsuarioLogadoLocalStorage()) {
-      if (this._getDataExpiracao().getTime() >= new Date().getTime()) {
+      if (this._getDataExpiracao()!.getTime() >= new Date().getTime()) {
         this._setValidadeToken();
       }
       else {
@@ -121,21 +121,23 @@ export class AuthService {
     }
   }
 
-  _getDataExpiracao(): Date {
+  _getDataExpiracao(): Date | undefined {
     if (this.usuarioLogadoObject && this.usuarioLogadoObject.token)
       return this.localStorage.get(this.usuarioLogadoObject.token as string) as Date;
-    return new Date();
+    return undefined;
   }
-  _setValidadeToken() {
+  async _setValidadeToken() {
     let validadeToken = new Date(new Date().getTime() + (1000 * 60 * 30))
-    if (this.usuarioLogadoObject && this.usuarioLogadoObject.token)
-      this.localStorage.set(this.usuarioLogadoObject.token, validadeToken)
+    if (this.usuarioLogadoObject && this.usuarioLogadoObject.token) {
+      await this.localStorage.set(this.usuarioLogadoObject.token, validadeToken)
+    }
+
   }
 
   async logout() {
     let usuarioLogado = this.getUsuarioLogadoLocalStorage();
     if (usuarioLogado) {
-      await this.connectHTTP.callService({
+      await this.connectHTTP.getUser({
         service: 'logout',
         naoExigeToken: true,
         paramsService: {
@@ -144,7 +146,8 @@ export class AuthService {
         }
       })
       //this.counterEvents.next(0);
-      this.localStorage?.remove('usuarioLogado', 'object')
+      this.localStorage?.remove('usuarioLogado', 'object');
+
     }
     this.router.navigate(['login']);
   }

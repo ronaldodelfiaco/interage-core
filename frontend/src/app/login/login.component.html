@@ -5,10 +5,12 @@
       <mat-label>Usuario</mat-label>
       <input matInput type="text" formControlName="login">
     </mat-form-field>
+
     <mat-form-field class="form-field" appearance="fill">
       <mat-label>Senha</mat-label>
       <input matInput type="password" formControlName="password" >
     </mat-form-field>
+    
     <mat-card-actions>
       <button mat-raised-button color="primary" [disabled]="!usuarioTO.valid">Logar</button>
       <button mat-raised-button color="primary">Esqueci a Senha</button>

@@ -38,7 +38,9 @@ export class LoginComponent implements OnInit {
       let usuarioLogado = this.localStorage.get('usuarioLogado') as Usuario;
       this.router.navigate(['eventos']);
     }
-    else this.auth.logout();
+    else {
+      this.auth.logout();
+    }
   }
 
   async onSubmit() {
